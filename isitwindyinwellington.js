@@ -16,7 +16,7 @@
 if(process.env.NODETIME_ACCOUNT_KEY) {
   require('nodetime').profile({
     accountKey: process.env.NODETIME_ACCOUNT_KEY,
-    appName: 'Is it windy in Wellington?' // optional
+    appName: 'Is it windy in Wellington' // optional
   });
 }
 var beaufort = require('beaufort');
