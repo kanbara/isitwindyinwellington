@@ -1,1 +1,1 @@
-web: node isitsnowinginberlin.js
+web: node isitwindyinwellington.js

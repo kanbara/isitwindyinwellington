@@ -16,9 +16,10 @@
 if(process.env.NODETIME_ACCOUNT_KEY) {
   require('nodetime').profile({
     accountKey: process.env.NODETIME_ACCOUNT_KEY,
-    appName: 'Is it snowing in Berlin' // optional
+    appName: 'Is it windy in Wellington?' // optional
   });
 }
+var beaufort = require('beaufort');
 var request = require('request');
 var restify = require('restify');
 var redis = require('redis');
@@ -32,12 +33,12 @@ var kelvin = 273.15;
 
 // Berlin city code for weather is 2950159
 var weatherApiOptions = {
-  url: "http://api.openweathermap.org/data/2.5/weather?id=2950159",
+  url: "http://api.openweathermap.org/data/2.5/weather?id=2179538",
   headers: {"x-api-key": process.env.OWMAPIKEY}
 };
 
 var forecastWeatherApiOptions = {
-  url: "http://api.openweathermap.org/data/2.5/forecast/daily?id=2950159&cnt=2",
+  url: "http://api.openweathermap.org/data/2.5/forecast/daily?id=2179538&cnt=2",
   headers: {"x-api-key": process.env.OWMAPIKEY}
 }
 
@@ -139,6 +140,15 @@ function willSnow(forecast) {
   });
 }
 
+function APIwind(req, res, next) {
+  getWeather(function (wx) {
+    var heading = wx.wind.deg;
+    var beaufortName = beaufort(wx.wind.speed, {unit: 'mps'});
+    res.send({wind: beaufortName, windHeading: heading, dataUpdated: wx.dt, temperature: wx.main.temp - kelvin});
+  });
+  next();
+}
+
 function APIisSnowing(req, res, next) {
   getWeather(function (wx) {
     var snowCheck = isSnowing(wx);
@@ -183,9 +193,12 @@ function APIgetRawForecastNoUpdate(req, res, next) {
   next();
 }
 
-console.log("isitsnowinginberlin starting");
+console.log("isitwindyinwellington starting");
 
 var server = restify.createServer();
+server.get("/api/wind", APIwind);
+server.head("/api/wind", APIwind);
+
 server.get("/api/isSnowing", APIisSnowing);
 server.head("/api/isSnowing", APIisSnowing);
 server.get("/api/willSnow", APIwillSnow);

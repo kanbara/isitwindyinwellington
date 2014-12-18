@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=1">
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
   <script>
-    function isSnowingController($scope, $http){
-      $http.get("/api/isSnowing")
+    function windController($scope, $http){
+      $http.get("/api/wind")
       .success(function (data, status, headers, config) {
-        if(data.isSnowing)
-          $scope.isSnowingYesNo = "Yes";
-        else
-          $scope.isSnowingYesNo = "No";
+        
+        $scope.wind = data.wind;
+        $scope.heading = data.windHeading % 360;
+        $scope.headingCss = "rotate(" + $scope.heading + "deg)";
 
         $scope.updateTimestamp = new Date(data.dataUpdated * 1000).toString();
 
@@ -22,22 +22,26 @@
         else if(data.temperature < 20) $scope.temp = "temp03";
         else if(data.temperature < 30) $scope.temp = "temp04";
         else $scope.temp = "temp05";
+        
       })
       .error(function (data, status, headers, config) {
-        $scope.isSnowingYesNo = "Error";
+        $scope.wind = "Error";
       });
     }
+
+
   </script>
-  <title>Is it snowing in Berlin?</title>
+  <title>Is it windy in Wellington?</title>
   <link rel="stylesheet" type="text/css" href="./static/style.css">
   <link href="./static/favicon.ico" rel="icon" type="image/x-icon" />
 </head>
-<body ng-class="temp" ng-app="" ng-controller="isSnowingController">
+<body ng-class="temp" ng-app="" ng-controller="windController">
   <div id="bgimage"></div>
   <div id="content">
-    <h1 id="answer" ng-bind="isSnowingYesNo" style="text-align: center;"></h1>
+    <h1 id="wind" ng-bind="wind" style="text-align: center;"></h1>
+    <h1 id="heading" ng-style="{'transform': headingCss}" style="text-align: center;">^</h1>
     <div id="update">Data updated: {{updateTimestamp}} - using <a href="http://openweathermap.org/" target="_blank">OpenWeatherMap</a></div>
-    <div id="github"><a href="https://github.com/jerr0328/isitsnowinginberlin" target="_blank">&nbsp;</a></div>
+    <div id="github"><a href="https://github.com/kanbara/isitwindyinwellington" target="_blank">&nbsp;</a></div>
   </div>
 </body>
 </html>

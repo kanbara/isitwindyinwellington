@@ -7,10 +7,11 @@
     "start": "node isitsnowinginberlin.js"
   },
   "dependencies": {
+    "beaufort": "^1.3.0",
     "nodetime": "~0.8.15",
+    "redis": "~0.12.1",
     "request": "~2.49",
-    "restify": "~2.8.x",
-    "redis": "~0.12.1"
+    "restify": "~2.8.x"
   },
   "engines": {
     "node": "0.10.x"
