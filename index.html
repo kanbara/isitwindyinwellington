@@ -5,6 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=1">
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" >
   <script>
     function windController($scope, $http){
       $http.get("/api/wind")
@@ -39,7 +40,7 @@
   <div id="bgimage"></div>
   <div id="content">
     <h1 id="wind" ng-bind="wind" style="text-align: center;"></h1>
-    <h1 id="heading" ng-style="{'transform': headingCss}" style="text-align: center;">^</h1>
+    <i class="fa fa-chevron-circle-up fa-2x" ng-style="{'transform': headingCss}" style="text-align: center;"></i>
     <div id="update">Data updated: {{updateTimestamp}} - using <a href="http://openweathermap.org/" target="_blank">OpenWeatherMap</a></div>
     <div id="github"><a href="https://github.com/kanbara/isitwindyinwellington" target="_blank">&nbsp;</a></div>
   </div>

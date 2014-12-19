@@ -79,6 +79,7 @@ a:hover {
   height: 100%;
   overflow: hidden;
 
+  font-size: 5vw;
   text-align: center;
   color: #666;
   display: flex;
@@ -86,21 +87,16 @@ a:hover {
   justify-content: center;
 }
 
-#wind, #heading {
+#wind {
   position: relative;
   text-align: center;
-  font-size: 20vh;
   font-weight: 100;
   margin-top: 0;
 }
 
-#heading {
-  font-size: 20vh;
-}
-
 #update {
   font-family: Arial, sans-serif;
-  font-size: 1.3vh;
+  font-size: 1.3vw;
   color: #fff;
   text-shadow: 0 1px 2px #666;
   position: absolute;
