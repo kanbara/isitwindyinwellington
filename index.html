@@ -12,7 +12,7 @@
       .success(function (data, status, headers, config) {
         
         $scope.wind = data.wind;
-        $scope.heading = data.windHeading % 360;
+        $scope.heading = data.windHeading;
         $scope.headingCss = "rotate(" + $scope.heading + "deg)";
 
         $scope.updateTimestamp = new Date(data.dataUpdated * 1000).toString();
