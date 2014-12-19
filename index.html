@@ -39,8 +39,12 @@
 <body ng-class="temp" ng-app="" ng-controller="windController">
   <div id="bgimage"></div>
   <div id="content">
-    <h1 id="wind" ng-bind="wind" style="text-align: center;"></h1>
-    <i class="fa fa-chevron-circle-up fa-2x" ng-style="{'transform': headingCss}" style="text-align: center;"></i>
+      <div class="absolute-center">
+        <h1 id="wind" ng-bind="wind" style="text-align: center;"></h1>
+        <i id="heading" class="fa fa-chevron-circle-up fa-2x" 
+           ng-style="{'transform': headingCss, '-webkit-transform': headingCss}" 
+           style="text-align: center;"></i>
+    </div>
     <div id="update">Data updated: {{updateTimestamp}} - using <a href="http://openweathermap.org/" target="_blank">OpenWeatherMap</a></div>
     <div id="github"><a href="https://github.com/kanbara/isitwindyinwellington" target="_blank">&nbsp;</a></div>
   </div>
