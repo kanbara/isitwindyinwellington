@@ -1,4 +1,4 @@
-isitsnowinginberlin
+isitwindyinwellington
 ===================
 
-Repository for isitsnowinginberlin.de
+Repository for isitwindyinwellington ( isitwindyinwellington.herokuapp.com )
